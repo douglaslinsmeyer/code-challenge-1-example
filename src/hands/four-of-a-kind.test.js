@@ -12,3 +12,4 @@ test('Test identification of four-of-a-kind.', () => {
     expect(fourOfAKindValidator(parseStringHand('2H 2D 2S 3H 2C'))).toBe(true);
     expect(fourOfAKindValidator(parseStringHand('2H 2D 2S 2C 3H'))).toBe(true);
 });
+

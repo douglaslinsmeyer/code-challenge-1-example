@@ -1,7 +1,7 @@
 "use strict";
 
 export default function(hand) {
-    const ranks = [hand[0].rank, hand[1].rank, hand[2].rank, hand[3].rank, hand[4].rank].sort();
+    const ranks = [hand.cards[0].rank, hand.cards[1].rank, hand.cards[2].rank, hand.cards[3].rank, hand.cards[4].rank].sort();
 
-    return (ranks[0] + 4 === ranks[4]);
+    return (hand.cards[0].rank + 4 === ranks[4]);
 }

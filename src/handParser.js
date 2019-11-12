@@ -42,15 +42,32 @@ const SUIT_MAP = {
     'S': SUIT_SPADES,
 };
 
-export function parseStringCard(stringCardRepresentation) {
-    return {
-        rank: RANK_MAP[stringCardRepresentation.charAt(0)],
-        suit: SUIT_MAP[stringCardRepresentation.charAt(1)]
-    }
-}
-
 export function parseStringHand(stringHandRepresentation) {
-    const cards = stringHandRepresentation.split(" ");
+    const stringCardsArray = stringHandRepresentation.split(" ");
+
+    console.log(stringCardsArray);
+
+    let hand = {
+        cards: [],
+        rankCounts: {},
+        suitCounts: {},
+    };
+
+    stringCardsArray.forEach(stringCardRepresentation => {
+        const rank = RANK_MAP[stringCardRepresentation.charAt(0)];
+        const suit = SUIT_MAP[stringCardRepresentation.charAt(1)];
+        hand.cards.push({ rank: rank, suit, suit });
+        if (undefined == hand.rankCounts[rank]) {
+            hand.rankCounts[rank] = 0;
+        }
+
+        if (undefined == hand.suitCounts[suit]) {
+            hand.suitCounts[suit] = 0;
+        }
+
+        hand.rankCounts[rank]++;
+        hand.suitCounts[suit]++;
+    });
     
-    return cards.map(parseStringCard);
+    return hand;
 }

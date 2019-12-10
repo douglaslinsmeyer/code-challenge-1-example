@@ -1,5 +1,5 @@
 import threeOfAKindValidator from './three-of-a-kind';
-import { parseStringHand } from '../handParser';
+import parseStringHand from '../handParser';
 
 test('Three of a kind: Negative Identification', () => {
     expect(threeOfAKindValidator(parseStringHand('3D 3H 7C 2D AS'))).toBe(false);

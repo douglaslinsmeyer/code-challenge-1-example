@@ -1,8 +1,9 @@
 import straightValidator from './straight';
-import { parseStringHand } from '../handParser';
+import parseStringHand from '../handParser';
 
 test('Test that straight hand parser recognizes when a hand is NOT a straight.', () => {
     expect(straightValidator(parseStringHand('2H 3D 8S TC AS'))).toBe(false);
+    expect(straightValidator(parseStringHand('2H 3D 8S TC 6S'))).toBe(false);
 });
 
 test('Test identification of straight.', () => {

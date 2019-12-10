@@ -19,7 +19,7 @@ const RANK_QUEEN = 12;
 const RANK_KING = 13;
 const RANK_ACE = 14;
 
-const RANK_MAP = {
+export const RANK_MAP = {
     '2': RANK_TWO,
     '3': RANK_THREE,
     '4': RANK_FOUR,
@@ -35,20 +35,19 @@ const RANK_MAP = {
     'A': RANK_ACE,
 };
 
-const SUIT_MAP = {
+export const SUIT_MAP = {
     'C': SUIT_CLUBS,
     'D': SUIT_DIAMONDS,
     'H': SUIT_HEARTS,
     'S': SUIT_SPADES,
 };
 
-export function parseStringHand(stringHandRepresentation) {
+export default function(stringHandRepresentation, debug = false) {
     const stringCardsArray = stringHandRepresentation.split(" ");
-
-    console.log(stringCardsArray);
 
     let hand = {
         cards: [],
+        highCard: null,
         rankCounts: {},
         suitCounts: {},
     };
@@ -56,7 +55,8 @@ export function parseStringHand(stringHandRepresentation) {
     stringCardsArray.forEach(stringCardRepresentation => {
         const rank = RANK_MAP[stringCardRepresentation.charAt(0)];
         const suit = SUIT_MAP[stringCardRepresentation.charAt(1)];
-        hand.cards.push({ rank: rank, suit, suit });
+        const card = { rank: rank, suit, suit }
+        hand.cards.push(card);
         if (undefined == hand.rankCounts[rank]) {
             hand.rankCounts[rank] = 0;
         }
@@ -67,7 +67,15 @@ export function parseStringHand(stringHandRepresentation) {
 
         hand.rankCounts[rank]++;
         hand.suitCounts[suit]++;
+
+        if (null === hand.highCard || rank > hand.highCard.rank) {
+            hand.highCard = card;
+        }
     });
+
+    if (debug) {
+        console.log(hand);
+    }
     
     return hand;
 }

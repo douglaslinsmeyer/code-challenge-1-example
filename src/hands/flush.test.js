@@ -1,5 +1,5 @@
 import flushValidator from './flush';
-import { parseStringHand } from '../handParser';
+import parseStringHand from '../handParser';
 
 test('Test that flush recognizes when a hand is NOT a flush.', () => {
     expect(flushValidator(parseStringHand('AS 2H 3H 5D 7C'))).toBe(false);

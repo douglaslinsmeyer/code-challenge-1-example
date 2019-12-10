@@ -1,5 +1,5 @@
 import fourOfAKindValidator from './four-of-a-kind';
-import { parseStringHand } from '../handParser';
+import parseStringHand from '../handParser';
 
 test('Test that four-of-a-kind recognizes when a hand is NOT a four-of-a-kind.', () => {
     expect(fourOfAKindValidator(parseStringHand('2H 4H 8D 6C AS'))).toBe(false);
